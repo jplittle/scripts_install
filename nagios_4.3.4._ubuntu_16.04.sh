@@ -38,7 +38,7 @@ sudo systemctl start nagios.service;
 sudo systemctl restart nagios.service; 
 sudo systemctl status nagios.service;
 
-sed -i "s|#cfg_file=/usr/local/nagios/etc/objects/windows.cfg|cfg_file=/usr/local/nagios/etc/objects/windows.cfg|" /etc/nagios/nagios.cfg
+sed -i "s|#cfg_file=/usr/local/nagios/etc/objects/windows.cfg|cfg_file=/usr/local/nagios/etc/objects/windows.cfg|" /usr/local/nagios/etc/nagios.cfg
 sed -i "
 /alias grep/ {
 n
