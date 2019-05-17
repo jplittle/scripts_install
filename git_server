@@ -1,0 +1,15 @@
+!#/bin/bash
+sudo apt-get install git-core
+sudo useradd git
+passwd git
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub | ssh git@remote-server "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+# pass set to 12qwaszx+1
+mkdir -p /home/swapnil/project-1.git
+cd /home/swapnil/project-1.git
+git init --bare
+mkdir -p /home/swapnil/git/project
+cd /home/swapnil/git/project
+git init 
+git add .
+# git commit -m "message" -a
