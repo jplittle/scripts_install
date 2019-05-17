@@ -1,1 +1,131 @@
+#!/bin/bash
+#- static location : cd /etc/network/interfaces      ----> ex below:
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+#source /etc/network/interfaces.d/*
+# The loopback network interface
+#auto lo
+#iface lo inet loopback
+# The primary network interface (Chino LAN)
+#auto ens160
+#iface ens160 inet static
+#       address 172.16.94.254
+#        netmask 255.255.255.0
+#        gateway 172.16.94.1
+#        dns-nameservers 172.16.94.1
+
+
+sudo apt-get update;
+sudo apt-get install tree;
+sudo apt-get install autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.0 libgd2-xpm-dev -y;
+cd /tmp;
+wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.3.4.tar.gz;
+tar xzf nagioscore.tar.gz;
+cd /tmp/nagioscore-nagios-4.3.4;
+sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled;
+sudo make all;
+sudo useradd nagios;
+sudo usermod -a -G nagios www-data;
+sudo make install;
+sudo make install-init;
+sudo update-rc.d nagios defaults;
+sudo make install-commandmode;
+sudo make install-config;
+sudo make install-webconf;
+sudo a2enmod rewrite;
+sudo a2enmod cgi;
+sudo ufw allow Apache;
+sudo ufw reload;
+sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin;
+sudo systemctl restart apache2.service;
+sudo systemctl start nagios.service;
+sudo apt-get install -y autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk dc build-essential snmp libnet-snmp-perl gettext;
+cd /tmp;
+wget --no-check-certificate -O nagios-plugins-2.2.1.tar.gz https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz;
+tar zxf nagios-plugins-2.2.1.tar.gz;
+cd /tmp/nagios-plugins-2.2.1;
+sudo ./configure;
+sudo make;
+sudo make install;
+
+
+sudo systemctl stop nagios.service;    
+sudo systemctl start nagios.service;   
+sudo systemctl restart nagios.service; 
+sudo systemctl status nagios.service;
+sed -i "s/#cfg_file=/usr/local/nagios/etc/objects/windows.cfg
+sudo nano /usr/local/nagios/etc/nagios.cfg
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+##################################################################################
+################################################################################ #
+##############################################################################   #
+############################################################################     #
+##########################################################################       #
+########################################################################         #
+######################################################################           #
+####################################################################             #
+#################################################################                #
+##################################################################################
+
+
+sudo nano ~/.bashrc
+
+    alias prefly='sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg'
+    alias fly='sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg; sudo service nagios restart'
+    alias mknag='cd /usr/local/nagios/etc/objects'
+    alias cls='clear'
+    alias nano='sudo nano'
+    alias reboot='sudo reboot'
+    alias snr='sudo service nagios restart'
+
+
+##################################################################################
+##################################################################               #
+####################################################################             #
+######################################################################           #
+########################################################################         #
+##########################################################################       #
+############################################################################     #
+##############################################################################   #
+################################################################################ #
+##################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+ sudo apt-get install gdebi
+    cd ~/Downloads
+    wget http://ftp.uk.debian.org/debian/pool/main/n/ntp/ntpdate_4.2.6.p5+dfsg-7+deb8u1_armel.deb
+    wget http://ftp.uk.debian.org/debian/pool/main/p/postfix/postfix_2.11.3-1_armel.deb
+    sudo gdebi ntpdate_4.2.6.p5+dfsg-7+deb8u1_armel.deb
+    sudo gdebi postfix_2.11.3-1_armel.deb
+
+
+#######
+To add hosts to the windows.cfg file, a line must be uncommented 
+cd /usr/local/nagios/etc
+nano nagios.cfg
+uncomment the windows.cfg portion, otheriwse newly added windows machines will not appear even if defined in mknag
+#######
 
