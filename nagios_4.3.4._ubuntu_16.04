@@ -53,79 +53,20 @@ sudo systemctl stop nagios.service;
 sudo systemctl start nagios.service;   
 sudo systemctl restart nagios.service; 
 sudo systemctl status nagios.service;
+
 sed -i "s|#cfg_file=/usr/local/nagios/etc/objects/windows.cfg|cfg_file=/usr/local/nagios/etc/objects/windows.cfg|" /etc/nagios/nagios.cfg
-sudo nano /usr/local/nagios/etc/nagios.cfg
+sed -i "
+/alias grep/ {
+n
+a\alias prefly='sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg'
+a\alias fly='sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg; sudo service nagios restart'
+a\alias mknag='cd /usr/local/nagios/etc/objects'
+a\alias cls='clear'
+a\alias nano='sudo nano'
+a\alias reboot='sudo reboot'
+a\alias snr='sudo service nagios restart'
+:a;n;ba}" ~/.bashrc;
+. ~/.bashrc
 
 
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-
-##################################################################################
-################################################################################ #
-##############################################################################   #
-############################################################################     #
-##########################################################################       #
-########################################################################         #
-######################################################################           #
-####################################################################             #
-#################################################################                #
-##################################################################################
-
-
-sudo nano ~/.bashrc
-
-    alias prefly='sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg'
-    alias fly='sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg; sudo service nagios restart'
-    alias mknag='cd /usr/local/nagios/etc/objects'
-    alias cls='clear'
-    alias nano='sudo nano'
-    alias reboot='sudo reboot'
-    alias snr='sudo service nagios restart'
-
-
-##################################################################################
-##################################################################               #
-####################################################################             #
-######################################################################           #
-########################################################################         #
-##########################################################################       #
-############################################################################     #
-##############################################################################   #
-################################################################################ #
-##################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
- sudo apt-get install gdebi
-    cd ~/Downloads
-    wget http://ftp.uk.debian.org/debian/pool/main/n/ntp/ntpdate_4.2.6.p5+dfsg-7+deb8u1_armel.deb
-    wget http://ftp.uk.debian.org/debian/pool/main/p/postfix/postfix_2.11.3-1_armel.deb
-    sudo gdebi ntpdate_4.2.6.p5+dfsg-7+deb8u1_armel.deb
-    sudo gdebi postfix_2.11.3-1_armel.deb
-
-
-#######
-To add hosts to the windows.cfg file, a line must be uncommented 
-cd /usr/local/nagios/etc
-nano nagios.cfg
-uncomment the windows.cfg portion, otheriwse newly added windows machines will not appear even if defined in mknag
-#######
 
