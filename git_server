@@ -5,11 +5,12 @@ apt-get update;
 apt-get remove php5-common -y;
 apt-get purge php5-common -y;
 apt-get install php7.2, php7.2-fpm php7.2-xml -y;
+apt-get --purge autoremove -y;
 apt-get install git;
 git --version;
 apt-get install apache2 libapache2-mod-php
 a2enmod rewrite;
-service apache2  restart;
+service apache2 restart;
 cd /etc/apache2/sites-available
 sed s|
 
