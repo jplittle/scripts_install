@@ -1,8 +1,9 @@
 # sudo su
 # git init
 # git clone https://github.com/jplittle/path_2_repo
-# --git config --global user.email jamesplittle25@gmail.com
+# git config --global user.email jamesplittle25@gmail.com
 # git config --global user.name jplittle
+# make a change to a file on the local computer - then do git "commit -a"
 # git pull https://github.com/jplittle/path_2_repo
 #### after changes made to a file, must use git commit, then git push
 # we are testing this again
