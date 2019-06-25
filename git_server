@@ -1,4 +1,6 @@
 !#/bin/bash
+this is not up to date
+#test test
 apt-get install python-software-properties software-properties-common -y
 # Verify what this is? private repo? #  LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php 
 apt-get update;
