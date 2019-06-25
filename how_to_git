@@ -5,3 +5,4 @@
 # git config --global user.name jplittle
 # git pull https://github.com/jplittle/path_2_repo
 #### after changes made to a file, must use git commit, then git push
+# we are testing this again
